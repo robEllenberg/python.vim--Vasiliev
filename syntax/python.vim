@@ -165,6 +165,11 @@ syn region pythonString		start=+[bB]\="+ skip=+\\\\\|\\"\|\\$+ excludenl end=+"+
 syn region pythonString		start=+[bB]\="""+ end=+"""+ keepend contains=pythonEscape,pythonEscapeError,pythonDocTest2,pythonSpaceError,@Spell
 syn region pythonString		start=+[bB]\='''+ end=+'''+ keepend contains=pythonEscape,pythonEscapeError,pythonDocTest,pythonSpaceError,@Spell
 
+syn region pythonDocString start=+^\(\\\n\s*\)\@<!\s*"""+ end=+"""+ keepend contains=pythonEscape,pythonEscapeError,pythonDocTest,pythonSpaceError,pythonDocStringTitle,pythonEpydocMarkup,pythonEpydocTag,@Spell
+syn region pythonDocString start=+^\(\\\n\s*\)\@<!\s*'''+ end=+'''+ keepend contains=pythonEscape,pythonEscapeError,pythonDocTest,pythonSpaceError,pythonDocStringTitle,pythonEpydocMarkup,pythonEpydocTag,@Spell
+syn region  pythonDocStringTitle  contained matchgroup=pythonDocString start=+"""+ matchgroup=pythonDocStringTitle keepend end="\.$" end="\.[ \t\r<&]"me=e-1 end="[^{]@"me=s-2,he=s-1 end=+"""+me=s-1,he=s-1 contains=pythonEpydocMarkup,@Spell
+syn region  pythonDocStringTitle  contained matchgroup=pythonDocString start=+'''+ matchgroup=pythonDocStringTitle keepend end="\.$" end="\.[ \t\r<&]"me=e-1 end="[^{]@"me=s-2,he=s-1 end=+'''+me=s-1,he=s-1 contains=pythonEpydocMarkup,@Spell
+
 syn match  pythonEscape		+\\[abfnrtv'"\\]+ display contained
 syn match  pythonEscape		"\\\o\o\=\o\=" display contained
 syn match  pythonEscapeError	"\\\o\{,2}[89]" display contained
@@ -330,6 +335,9 @@ if version >= 508 || !exists("did_python_syn_inits")
   HiLink pythonCoding		Special
   HiLink pythonRun		Special
   HiLink pythonTodo		Todo
+
+  HiLink pythonDocString  Comment
+  HiLink pythonDocStringTitle  SpecialComment
 
   HiLink pythonError		Error
   HiLink pythonIndentError	Error
