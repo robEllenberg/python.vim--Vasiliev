@@ -254,6 +254,7 @@ if exists("python_highlight_builtin_objs") && python_highlight_builtin_objs != 0
   " Builtin objects and types
   syn keyword pythonBuiltinObj	True False Ellipsis None NotImplemented
   syn keyword pythonBuiltinObj	__debug__ __doc__ __file__ __name__ __package__
+  syn keyword pythonSelf        self
 endif
 
 if exists("python_highlight_builtin_funcs") && python_highlight_builtin_funcs != 0
@@ -376,6 +377,7 @@ if version >= 508 || !exists("did_python_syn_inits")
 
   HiLink pythonBuiltinObj	Structure
   HiLink pythonBuiltinFunc	Function
+  HiLink pythonSelf         Structure
 
   HiLink pythonExClass	Structure
 
